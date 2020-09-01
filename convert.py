@@ -16,7 +16,7 @@ load_dotenv()
 azure_acocunt_name = os.getenv("AZURE_ACCOUNT_NAME")
 
 account_url = f'https://{azure_acocunt_name}.blob.core.windows.net/'
-container_name = "uploads"
+container_name = ""
 
 parser = argparse.ArgumentParser()
 parser.add_argument('inputFilename')
@@ -26,7 +26,6 @@ args = parser.parse_args()
 
 def convert_file(inputFile):
     output_path = ".\\output\\" + args.outputFilename
-    # output_path = args.outputFilename
     stream = ffmpeg.input(args.inputFilename)
     stream = ffmpeg.output(stream, output_path)
     ffmpeg.run(stream)
@@ -46,7 +45,6 @@ service = BlobServiceClient(
     credential=sas_token
     )
 
-# blob = service.get_blob_client(container='uploads')
 blob = service.get_blob_client(
     container=container_name,
     blob=args.outputFilename
