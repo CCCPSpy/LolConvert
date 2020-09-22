@@ -59,4 +59,6 @@ def upload_blob(blobName):
 
 converted_blob = convert_file(args.inputFilename)
 upload_blob(converted_blob)
-print(f"URI: {account_url}{container_name}/{args.outputFilename}")
+print(f"Direct URI: {account_url}{container_name}/{args.outputFilename}")
+print(f"Player URI: http://play.lolreplays.fun/?v={args.outputFilename}")
+
